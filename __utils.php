@@ -2,7 +2,7 @@
 date_default_timezone_set('Asia/Manila');
 
 // Create connection
-$conn = new mysqli('localhost', 'root', '', 'pasa_report');
+$conn = new mysqli('localhost', 'root', 'admin', 'pasa_report');
 
 // Check connection
 if ($conn->connect_error) {
