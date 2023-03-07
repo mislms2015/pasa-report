@@ -4,7 +4,7 @@ require_once './Classes/PHPExcel/IOFactory.php';
 
 $title_date = date('F j, Y', strtotime('-1 day', strtotime(date('Y-m-d'))));
 $report_sheet = array('PASADATA', 'PASALOAD', 'PASAPROMO', 'PASAPOINTS');
-$pasa_status = array('SUCESS', 'FAILED');
+$pasa_status = array('SUCCESS', 'FAILED');
 //$file = 'test.xlsx';
 $file = 'Pasa Report - ' .date('Ymd', strtotime($title_date)). '.xlsx';
 

@@ -13,6 +13,7 @@ if (isset($_POST['submit'])) {
         for ($i = 0; $i < count($files['name']); $i++) {
             $pasa = array();
             $filename = $files['name'][$i];
+            
             if (in_array($files['type'][$i], $fileMimes)) {
                 $err_msg = '';
                 $database = '';
@@ -29,6 +30,11 @@ if (isset($_POST['submit'])) {
                 }
                 
                 $header_compare = array_diff($header,$temp_header);
+
+                // echo '<pre>';
+                // print_R($temp_header);
+                // echo '</pre>';
+                // die;
 
                 if (count($header_compare) > 0) {
                     $err_msg = "<b><i>$filename header not match.</i></b>";
@@ -63,6 +69,12 @@ if (isset($_POST['submit'])) {
 
                     $conn->query("START TRANSACTION");
                     foreach ($pasa as $res) {
+                        if ($res[16] == 'SUCESS') {
+                            $pasa_status = 'SUCCESS';
+                        } else {
+                            $pasa_status = $res[16];
+                        }
+
                         $sequence_number = $res[0];
                         $transaction_id = $res[1];
                         $date_registered = $res[2];
@@ -79,7 +91,7 @@ if (isset($_POST['submit'])) {
                         $denomination_id = $res[13];
                         $pasa_type = $res[14];
                         $brand = $res[15];
-                        $status = $res[16];
+                        $status = $pasa_status;
                         $stmt->execute();
                     }
                     $stmt->close();
